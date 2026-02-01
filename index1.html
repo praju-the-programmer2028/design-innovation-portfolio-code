@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prajanya Kannan Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fdfcfb;
+  --text: #1a1a1a;
+  --accent: #d946ef;
+  --accent-hover: #c026d3;
+  --card: #ffffff;
+  --border: #f0f0f0;
+  --shadow: rgba(217, 70, 239, 0.1);
+}
+
+body.dark {
+  --bg: #0a0a0f;
+  --text: #f5f5f5;
+  --accent: #a78bfa;
+  --accent-hover: #8b5cf6;
+  --card: #1a1a24;
+  --border: #2a2a3a;
+  --shadow: rgba(167, 139, 250, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+  transform: translateX(2px);
+}
+
+/* TOP BAR */
+.top-bar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  padding: 2rem 3rem;
+  border-bottom: 3px solid var(--accent);
+  animation: slideDown 0.6s ease;
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.signature {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  font-style: italic;
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeIn 0.8s ease 0.2s backwards;
+}
+
+.name {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  animation: fadeIn 0.8s ease 0.3s backwards;
+}
+
+.modes {
+  display: flex;
+  gap: 1rem;
+  animation: fadeIn 0.8s ease 0.4s backwards;
+}
+
+.modes span {
+  cursor: pointer;
+  font-size: 2rem;
+  transition: all 0.3s ease;
+  filter: grayscale(0.5);
+}
+
+.modes span:hover {
+  transform: scale(1.2) rotate(10deg);
+  filter: grayscale(0);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* NAVIGATION */
+.nav-headings {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+  padding: 0 2rem;
+  animation: fadeIn 0.8s ease 0.5s backwards;
+}
+
+.nav-headings button {
+  padding: 1rem 2rem;
+  border: 2px solid var(--border);
+  border-radius: 50px;
+  background: var(--card);
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: 'Space Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-headings button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: all 0.5s ease;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.nav-headings button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.nav-headings button:hover {
+  color: white;
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--shadow);
+}
+
+.nav-headings button.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+  box-shadow: 0 8px 25px var(--shadow);
+}
+
+/* SECTIONS */
+.section {
+  display: none;
+  padding: 3rem 2rem;
+  animation: fadeInUp 0.6s ease;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section.active {
+  display: block;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h2.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  font-weight: 900;
+  margin: 0 0 3rem 0;
+  text-align: center;
+  background: linear-gradient(135deg, var(--text), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -1px;
+}
+
+/* ABOUT ME SECTION */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 2.5fr 1fr;
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.side {
+  font-size: 1rem;
+  line-height: 1.8;
+  background: var(--card);
+  padding: 2rem;
+  border-radius: 20px;
+  border: 2px solid var(--border);
+  box-shadow: 0 4px 20px var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.side:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px var(--shadow);
+}
+
+.side h3 {
+  font-family: 'Space Mono', monospace;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.panel {
+  border: 4px solid var(--accent);
+  background: var(--card);
+  border-radius: 20px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2.5rem;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.panel::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.panel:hover::before {
+  opacity: 0.05;
+}
+
+.panel:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 40px var(--shadow);
+}
+
+.panel p {
+  max-width: 500px;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  z-index: 1;
+  position: relative;
+}
+
+.description {
+  text-align: center;
+  padding: 2.5rem;
+  font-size: 1.15rem;
+  line-height: 1.9;
+  max-width: 1000px;
+  margin: auto;
+  background: var(--card);
+  border-radius: 20px;
+  border: 2px solid var(--border);
+  box-shadow: 0 4px 20px var(--shadow);
+}
+
+/* ICON GRID */
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding: 2rem;
+  background: var(--card);
+  border-radius: 20px;
+  border: 2px solid var(--border);
+}
+
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 1rem;
+  border-radius: 15px;
+}
+
+.icon-item:hover {
+  transform: translateY(-8px) scale(1.1);
+  background: var(--border);
+}
+
+.icon-item span:last-child {
+  font-size: 0.8rem;
+  font-family: 'Space Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text);
+  opacity: 0.7;
+}
+
+/* CAROUSEL */
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 2rem;
+  padding: 2rem 1rem;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--border);
+}
+
+.carousel::-webkit-scrollbar {
+  height: 10px;
+}
+
+.carousel::-webkit-scrollbar-track {
+  background: var(--border);
+  border-radius: 10px;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 10px;
+}
+
+.card {
+  min-width: 320px;
+  background: var(--card);
+  border-radius: 20px;
+  padding: 1.5rem;
+  scroll-snap-align: start;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid var(--border);
+  box-shadow: 0 4px 15px var(--shadow);
+  animation: slideIn 0.6s ease backwards;
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+.card:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 15px 40px var(--shadow);
+  border-color: var(--accent);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card iframe {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+}
+
+.card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+}
+
+.card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  opacity: 0.8;
+}
+
+/* FAVORITES GRID */
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.favorite-category {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 2px solid var(--border);
+  box-shadow: 0 4px 20px var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.favorite-category:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px var(--shadow);
+  border-color: var(--accent);
+}
+
+.favorite-category h3 {
+  font-family: 'Space Mono', monospace;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.favorite-category ul {
+  list-style: none;
+  padding: 0;
+}
+
+.favorite-category li {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.favorite-category li:last-child {
+  border-bottom: none;
+}
+
+.favorite-category li strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* CONTACT MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: var(--card);
+  padding: 3rem;
+  border-radius: 25px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  border: 3px solid var(--accent);
+  animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.close-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--text);
+  transition: all 0.3s ease;
+}
+
+.close-modal:hover {
+  color: var(--accent);
+  transform: rotate(90deg);
+}
+
+.modal-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--accent);
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--border);
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.contact-link:hover {
+  background: var(--accent);
+  color: white;
+  transform: translateX(10px);
+}
+
+.contact-link span:first-child {
+  font-size: 1.5rem;
+}
+
+/* RESPONSIVE */
+@media(max-width: 900px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .panel {
+    height: 320px;
+  }
+  
+  .top-bar {
+    padding: 1.5rem 2rem;
+  }
+  
+  .signature {
+    font-size: 2rem;
+  }
+  
+  .name {
+    font-size: 2.5rem;
+  }
+  
+  h2.section-title {
+    font-size: 2.5rem;
+  }
+  
+  .nav-headings button {
+    font-size: 0.9rem;
+    padding: 0.8rem 1.5rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="signature">pk</div>
+  <div class="name">Prajanya Kannan</div>
+  <div class="modes">
+    <span onclick="setTheme('light')" title="Light Mode" style="font-size: 2.5rem;">☀️</span>
+    <span onclick="setTheme('dark')" title="Dark Mode" style="font-size: 2.5rem;">🌙</span>
+  </div>
+</div>
+
+<!-- NAVIGATION HEADINGS -->
+<div class="nav-headings">
+  <button class="active" onclick="showSection('about')">About Me</button>
+  <button onclick="showSection('favorites')">Favorites</button>
+  <button onclick="showSection('blogs')">Blogs</button>
+  <button onclick="showSection('research')">Research</button>
+  <button onclick="showSection('projects')">Projects</button>
+  <button onclick="showSection('awards')">Awards</button>
+  <button onclick="showSection('gallery')">Gallery</button>
+  <button onclick="showSection('contact')">Contact</button>
+</div>
+
+<!-- SECTIONS -->
+
+<!-- ABOUT ME -->
+<div id="about" class="section active">
+  <div class="main-grid">
+    <div class="side">
+      <h3>Fun Fact</h3>
+      <p>I have <strong>visual photographic memory</strong> — I can remember faces, colors, patterns, and shades with remarkable clarity!</p>
+    </div>
+    <div class="panel" onclick="cyclePanel()">
+      <p id="panelText">Why DESINV 23? I am here to experiment with electronics and web design, a creative combination of hardware and software. This is also part of the Design Skills for Design Innovation Certificate.</p>
+    </div>
+    <div class="side">
+      <h3>Extra Info</h3>
+      <p>Bioengineering major, EECS minor, Design Innovation certificate.</p>
+    </div>
+  </div>
+  
+  <div class="description">
+    Concentrations: biomedical devices, nanotechnology, computational biology. Skills: research, prototyping, writing, design. Interests: dance, photography, creative coding, exploring new places.
+  </div>
+  
+  <div class="icon-grid">
+    <div class="icon-item" onclick="openModal()">
+      <span>📧</span>
+      <span>Email</span>
+    </div>
+    <div class="icon-item" onclick="window.open('https://github.com/yourusername', '_blank')">
+      <img src="Screenshot_2026-01-27_at_8_16_57_AM.png" alt="GitHub" style="width: 40px; height: 40px; object-fit: contain;">
+      <span>GitHub</span>
+    </div>
+    <div class="icon-item" onclick="openModal()">
+      <span>🎵</span>
+      <span>Spotify</span>
+    </div>
+    <div class="icon-item" onclick="openModal()">
+      <span>📱</span>
+      <span>LinkedIn</span>
+    </div>
+    <div class="icon-item" onclick="openModal()">
+      <span>📷</span>
+      <span>Instagram</span>
+    </div>
+    <div class="icon-item" onclick="openModal()">
+      <span>🐦</span>
+      <span>Twitter</span>
+    </div>
+  </div>
+</div>
+
+<!-- FAVORITES -->
+<div id="favorites" class="section">
+  <h2 class="section-title">Favorites</h2>
+  
+  <div class="favorites-grid">
+    <div class="favorite-category">
+      <h3>✨ Characters</h3>
+      <ul>
+        <li>🦦 <strong>Capybara</strong> - The most chill animal</li>
+        <li>🖤 <strong>Kuromi</strong> - Rebellious and cute</li>
+        <li style="display: flex; align-items: center; gap: 0.5rem;">
+          <img src="download.png" alt="Hello Kitty" style="width: 30px; height: 30px; object-fit: contain;">
+          <span><strong>Hello Kitty</strong> - Classic icon</span>
+        </li>
+        <li>💙 <strong>Squirtle</strong> - Best starter Pokémon</li>
+        <li style="display: flex; align-items: center; gap: 0.5rem;">
+          <img src="6.png" alt="Cinnamoroll" style="width: 30px; height: 30px; object-fit: contain;">
+          <span><strong>Cinnamoroll</strong> - Fluffy cloud puppy</span>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="favorite-category">
+      <h3>📺 K-Dramas</h3>
+      <ul>
+        <li><strong>Blind</strong> (2022) - Detective and judge brothers uncover serial murders tied to their dark past as orphans</li>
+        <li><strong>My Dearest Nemesis</strong> (2025) - Gaming rivals form a bond, reunite in adulthood to confront their trauma</li>
+        <li><strong>Angel Last Mission: Love</strong> (2019) - Abstract romance handling multiple plot lines with fate and justice</li>
+        <li><strong>Memories of Murder</strong> - Masterpiece thriller</li>
+        <li><strong>The Glory</strong> - Revenge and justice</li>
+        <li><strong>Mr. Queen</strong> - Historical comedy</li>
+        <li><strong>See You in My 19th Life</strong> - Reincarnation romance</li>
+        <li><strong>Big Mouth</strong> - Legal thriller</li>
+        <li><strong>Bad Prosecutor</strong> (2022) - Prosecutor uses unconventional methods to expose corruption</li>
+        <li><strong>Silenced</strong> - Important social commentary</li>
+        <li><strong>Marry My Husband</strong> (2024) - Time travel revenge after betrayal</li>
+      </ul>
+    </div>
+    
+    <div class="favorite-category">
+      <h3>🎬 Movies & Shows</h3>
+      <ul>
+        <li><strong>Crazy Rich Asians</strong> - Representation & romance</li>
+        <li><strong>Freaks and Geeks</strong> - Coming of age classic</li>
+        <li><strong>Victorious</strong> - Musical comedy</li>
+        <li><strong>The Pitt</strong> - Medical drama</li>
+        <li><strong>Black Panther</strong> - Superhero excellence</li>
+        <li><strong>Spiderman: Into & Across the Spiderverse</strong> - Animated masterpieces</li>
+      </ul>
+    </div>
+    
+    <div class="favorite-category">
+      <h3>🎭 Malayalam/Tamil/Hindi</h3>
+      <ul>
+        <li><strong>Drishyam</strong> - Thriller masterpiece</li>
+        <li><strong>Officer on Duty</strong></li>
+        <li><strong>Maheshinte Prathikaram</strong></li>
+        <li><strong>Bangalore Days</strong> - Heartwarming</li>
+        <li><strong>ABCD</strong></li>
+        <li><strong>Lokha Chapter 1: Chandra</strong></li>
+        <li><strong>Sookshmadarshini</strong></li>
+        <li><strong>Anweshippin Kandethum</strong></li>
+        <li><strong>Nna Thaan Case Kodu</strong></li>
+        <li><strong>Jigarthanda</strong></li>
+        <li><strong>Chennai 600028</strong></li>
+        <li><strong>Hungama</strong></li>
+        <li><strong>Laapataa Ladies</strong></li>
+        <li><strong>Yeh Jawaani Hai Deewani</strong></li>
+      </ul>
+    </div>
+    
+    <div class="favorite-category">
+      <h3>📚 Books</h3>
+      <ul>
+        <li><strong>Watchmen</strong> by Alan Moore - Graphic novel masterpiece</li>
+        <li><strong>1984</strong> by George Orwell - Dystopian classic</li>
+        <li><strong>Fahrenheit 451</strong> by Ray Bradbury - Censorship critique</li>
+        <li><strong>Lord of the Flies</strong> by William Golding</li>
+        <li><strong>Brave New World</strong> by Aldous Huxley</li>
+        <li><strong>This One Summer</strong> by Jillian & Mariko Tamaki</li>
+        <li><strong>Anya's Ghost</strong> by Vera Brosgol</li>
+        <li><strong>Faceless</strong> by Alyssa B. Sheinmel</li>
+        <li><strong>Calvin and Hobbes</strong> by Bill Watterson</li>
+      </ul>
+    </div>
+    
+    <div class="favorite-category">
+      <h3>☕ Eateries & Cafes</h3>
+      <ul>
+        <li>Chi Cha San Chen</li>
+        <li>de matcha</li>
+        <li>binge coffeehouse</li>
+        <li>madras cafe</li>
+        <li>lakshmi tea stall</li>
+        <li>almare gelato</li>
+        <li>fentons creamery</li>
+        <li>crepevine</li>
+        <li>gold bean cafe</li>
+        <li>coro coffee room</li>
+        <li>heyma coffee</li>
+        <li>mind coffee</li>
+        <li>insomnia cookies</li>
+        <li>penelopes diner</li>
+        <li>meadowland dairy</li>
+        <li>anapoorna</li>
+      </ul>
+    </div>
+    
+    <div class="favorite-category">
+      <h3>💄 Makeup</h3>
+      <img src="IMG_3261.JPG" alt="Makeup collection" style="width: 100%; border-radius: 15px; margin-bottom: 1rem; max-height: 200px; object-fit: cover;">
+      <ul>
+        <li><strong>Eyeshadow</strong> - Pastel shades</li>
+        <li><strong>Lipstick/Tint</strong> - Pink, light fuschia, red</li>
+        <li><strong>Foundation</strong> - Almond caramel (acne-friendly)</li>
+        <li><strong>Lash curler & mascara</strong></li>
+        <li><em>All from Sephora</em></li>
+      </ul>
+    </div>
+    
+    <div class="favorite-category">
+      <h3>🧴 Skincare</h3>
+      <ul>
+        <li>La Roche Posay</li>
+        <li>Prescriptions</li>
+        <li>Moisturizer</li>
+        <li>Dark spot blender</li>
+        <li>Acne-friendly foundation</li>
+      </ul>
+    </div>
+    
+    <div class="favorite-category">
+      <h3>📍 Hangout Spots</h3>
+      <ul>
+        <li>Anywhere to eat</li>
+        <li>Hiking/running/sightseeing</li>
+        <li>Downtown stroll</li>
+        <li>Bungee jumping</li>
+        <li>Houses</li>
+        <li>Retreats</li>
+        <li>Shopping</li>
+        <li>City buildings</li>
+        <li>Discos</li>
+      </ul>
+    </div>
+    
+    <div class="favorite-category">
+      <h3>👗 Fashion</h3>
+      <ul>
+        <li>Crop tops</li>
+        <li>Skirts (long and midi)</li>
+        <li>Comfy night shorts</li>
+        <li>Kasavu saree</li>
+        <li>Pattu pavadai cotton</li>
+        <li>Dress sets</li>
+        <li>Baggy pants or tights</li>
+        <li>Jeans</li>
+        <li>Character socks</li>
+        <li>Leopard print Sketchers or Puma shoes or tap shoes</li>
+        <li>Slippers</li>
+        <li>Grey or merch jacket</li>
+        <li>Over-size shirts</li>
+        <li>Salwar kameez</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- BLOGS -->
+<div id="blogs" class="section">
+  <h2 class="section-title">Blogs & Writing</h2>
+  <div class="carousel">
+    <div class="card" onclick="window.open('https://qlsroar.org/author/prajanyakannan/', '_blank')">
+      <img src="IMG_0396.jpg" alt="Writing" style="object-fit: cover;">
+      <h3>QLS Roar</h3>
+      <p>Culture editor and writer covering global news, cultural topics, and creative content</p>
+      <a href="https://qlsroar.org/author/prajanyakannan/" target="_blank">Read my articles →</a>
+    </div>
+    <div class="card" onclick="window.open('https://bsj.studentorg.berkeley.edu/author/prajanyakannan/', '_blank')">
+      <img src="https://via.placeholder.com/320x200/a78bfa/ffffff?text=BSJ" alt="BSJ">
+      <h3>Berkeley Scientific Journal</h3>
+      <p>Scientific journalism exploring research and discoveries</p>
+      <a href="https://bsj.studentorg.berkeley.edu/author/prajanyakannan/" target="_blank">Read my articles →</a>
+    </div>
+    <div class="card" onclick="window.open('https://rusticpathways.com/blog/sustainable-seeds-of-change-empowering-young-minds-through-recycling-education', '_blank')">
+      <img src="https://via.placeholder.com/320x200/ec4899/ffffff?text=Rustic+Pathways" alt="Rustic Pathways">
+      <h3>Rustic Pathways</h3>
+      <p>Climate Leaders Fellowship work on sustainability and education</p>
+      <a href="https://rusticpathways.com/blog/sustainable-seeds-of-change-empowering-young-minds-through-recycling-education" target="_blank">Read article →</a>
+    </div>
+  </div>
+</div>
+
+<!-- RESEARCH -->
+<div id="research" class="section">
+  <h2 class="section-title">Research</h2>
+  <div class="carousel">
+    <div class="card">
+      <img src="https://via.placeholder.com/320x200/8b5cf6/ffffff?text=Exoskeleton" alt="Exoskeleton">
+      <h3>Exoskeleton Team @ Jadoo Technologies</h3>
+      <p>Developing EEG-integrated helmet and robot suit for stroke rehabilitation. Self-teaching CAD, PCB design, and Makerpass training.</p>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/320x200/d946ef/ffffff?text=Memantine+Study" alt="Memantine">
+      <h3>Memantine & Down Syndrome</h3>
+      <p>Investigating memantine's efficacy as NMDA receptor antagonist to improve cognitive outcomes in Down Syndrome mice through SVM modeling.</p>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/320x200/a78bfa/ffffff?text=Nanoparticles" alt="Nanoparticles">
+      <h3>ASDRP: Nanoparticle Research</h3>
+      <p>Synthesized curcumin-coated iron-oxide nanoparticles using cilantro extract for Parkinson's disease. Won 1st place at UC Davis Teen Biotech Challenge.</p>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/320x200/ec4899/ffffff?text=Paper+Diagnostics" alt="Paper Diagnostics">
+      <h3>Paper Diagnostics & Giant Vesicles</h3>
+      <p>Researching paper diagnostic test kits, reagent calibration, and giant unilamellar vesicles (GUVs) for synthetic cell constructs.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div id="projects" class="section">
+  <h2 class="section-title">Projects & Initiatives</h2>
+  <div class="carousel">
+    <div class="card">
+      <img src="https://via.placeholder.com/320x200/d946ef/ffffff?text=JoyBowls" alt="JoyBowls">
+      <h3>JoyBowls</h3>
+      <p>Founded non-profit social impact initiative creating desk terrariums. Donated 384+ JoyBowls to senior care centers, raised $5,100 for mental health awareness.</p>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/320x200/a78bfa/ffffff?text=Fertile+GroundWorks" alt="Fertile GroundWorks">
+      <h3>Fertile GroundWorks</h3>
+      <p>Volunteer addressing food desert problem through sustainable farming. Educated 1,075+ volunteers, donated 24,185 pounds of produce.</p>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/320x200/8b5cf6/ffffff?text=Climate+Leaders" alt="Climate Leaders">
+      <h3>Climate Leaders Fellowship</h3>
+      <p>Selected among 120 students from 12 countries. Led recycling education campaign, lectured 60+ third graders on environmental action.</p>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/320x200/ec4899/ffffff?text=Stanford+App" alt="Stanford App">
+      <h3>Stanford Clinical Neuroscience</h3>
+      <p>Designed prototype app to empower dyslexic and ADHD patients, integrating reading glasses, news, planner, and health tracker features.</p>
+    </div>
+  </div>
+</div>
+
+<!-- AWARDS -->
+<div id="awards" class="section">
+  <h2 class="section-title">Awards & Recognition</h2>
+  <div class="favorites-grid">
+    <div class="favorite-category">
+      <h3>🏆 UC Davis Teen Biotech Challenge</h3>
+      <ul>
+        <li><strong>1st Place - Senior Category (2023)</strong></li>
+        <li>Poster: "Nanoparticles for Drug Delivery - The Tiny Wonders Transforming Medicine"</li>
+        <li>Presented at UC Davis Biotech Symposium, Genome Center</li>
+      </ul>
+    </div>
+    
+    <div class="favorite-category">
+      <h3>🎓 Gilder Lehrman Scholarship</h3>
+      <ul>
+        <li><strong>Full Scholarship ($9,995)</strong></li>
+        <li>Selected nationally among 20 rising 10-12th graders</li>
+        <li>4-week residential summer program at National History Academy</li>
+      </ul>
+    </div>
+    
+    <div class="favorite-category">
+      <h3>✍️ Scholastic Art & Writing</h3>
+      <ul>
+        <li><strong>8 Regional Awards (2020-2023)</strong></li>
+        <li>2 Silver Keys, 6 Honorable Mentions</li>
+        <li>Categories: Critical Essay, Personal Memoir, Comic Art, Journalism, Expanded Projects</li>
+      </ul>
+    </div>
+    
+    <div class="favorite-category">
+      <h3>📖 Johns Hopkins Junior Book Award</h3>
+      <ul>
+        <li>Recognized for intellectual growth and independent scholarship</li>
+        <li>Using scholarship for societal betterment</li>
+      </ul>
+    </div>
+    
+    <div class="favorite-category">
+      <h3>🌟 President's Volunteer Service Award</h3>
+      <ul>
+        <li><strong>Gold (2022) & Bronze (2023)</strong></li>
+        <li>324 hours of volunteer service</li>
+        <li>Education, hunger, environment, and mental health causes</li>
+      </ul>
+    </div>
+    
+    <div class="favorite-category">
+      <h3>🏙️ Dublin Young Citizen Award</h3>
+      <ul>
+        <li><strong>Top 3 Finalist</strong></li>
+        <li>Certificate from Mayor of Dublin</li>
+        <li>Honored for JoyBowls foundation and Fertile GroundWorks work</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY (DANCE) -->
+<div id="gallery" class="section">
+  <h2 class="section-title">Dance Gallery</h2>
+  <p style="text-align: center; margin-bottom: 2rem; font-size: 1.15rem; opacity: 0.8;">
+    Dance relieves stress, challenges my brain through freestyling and choreography, and keeps me physically active. Inspirations: Shigeto, Eldon, Sean Lew, Tate McRae, Bailey Sok
+  </p>
+  <div class="carousel">
+    <div class="card">
+      <iframe width="288" height="200" src="https://www.youtube.com/embed/bQH3FsdGZmQ" frameborder="0" allowfullscreen></iframe>
+      <h3>Performance 1</h3>
+    </div>
+    <div class="card">
+      <iframe width="288" height="200" src="https://www.youtube.com/embed/xpXokps0yE4" frameborder="0" allowfullscreen></iframe>
+      <h3>Performance 2</h3>
+    </div>
+    <div class="card">
+      <iframe width="288" height="200" src="https://www.youtube.com/embed/xduGqU76pGg" frameborder="0" allowfullscreen></iframe>
+      <h3>Performance 3</h3>
+    </div>
+    <div class="card">
+      <iframe width="288" height="200" src="https://www.youtube.com/embed/6ijN6t2GG3Q" frameborder="0" allowfullscreen></iframe>
+      <h3>Performance 4</h3>
+    </div>
+    <div class="card">
+      <iframe width="288" height="200" src="https://www.youtube.com/embed/ZcFE-2-Zj5Y" frameborder="0" allowfullscreen></iframe>
+      <h3>Performance 5</h3>
+    </div>
+    <div class="card">
+      <iframe width="288" height="200" src="https://www.youtube.com/embed/V0qMSPswG5s" frameborder="0" allowfullscreen></iframe>
+      <h3>Performance 6</h3>
+    </div>
+    <div class="card">
+      <iframe width="288" height="200" src="https://www.youtube.com/embed/-PNj3Td__M0" frameborder="0" allowfullscreen></iframe>
+      <h3>Performance 7</h3>
+    </div>
+    <div class="card">
+      <iframe width="288" height="200" src="https://www.youtube.com/embed/Q9sZl-HtD80" frameborder="0" allowfullscreen></iframe>
+      <h3>Performance 8</h3>
+    </div>
+    <div class="card">
+      <iframe width="288" height="200" src="https://www.youtube.com/embed/LHm2z4YJ3wc" frameborder="0" allowfullscreen></iframe>
+      <h3>Performance 9</h3>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="section">
+  <h2 class="section-title">Get in Touch</h2>
+  <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+    <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 2rem;">
+      I'd love to connect! Whether you want to discuss research, collaborate on projects, or just chat about dance and design.
+    </p>
+    <button onclick="openModal()" style="padding: 1.5rem 3rem; font-size: 1.2rem; background: var(--accent); color: white; border: none; border-radius: 50px; cursor: pointer; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; box-shadow: 0 8px 25px var(--shadow);">
+      View Contact Information
+    </button>
+  </div>
+</div>
+
+<!-- CONTACT MODAL -->
+<div id="contactModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeModal()">&times;</span>
+    <h3>Contact Information</h3>
+    <div class="contact-links">
+      <a href="mailto:prajanya@berkeley.edu" class="contact-link">
+        <span>📧</span>
+        <span>prajanya@berkeley.edu</span>
+      </a>
+      <a href="https://github.com/yourusername" target="_blank" class="contact-link">
+        <span>💻</span>
+        <span>GitHub (Coming Soon)</span>
+      </a>
+      <div class="contact-link">
+        <span>🎵</span>
+        <span>Spotify (Coming Soon)</span>
+      </div>
+      <div class="contact-link">
+        <span>📱</span>
+        <span>LinkedIn (Coming Soon)</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Theme Toggle
+function setTheme(mode) {
+  document.body.className = '';
+  if(mode === 'dark') {
+    document.body.classList.add('dark');
+    localStorage.setItem('theme', 'dark');
+  } else {
+    localStorage.setItem('theme', 'light');
+  }
+}
+
+// Load saved theme
+window.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme');
+  if(savedTheme === 'dark') {
+    document.body.classList.add('dark');
+  }
+});
+
+// Panel cycle
+const panelStates = [
+  "Why DESINV 23? I am here to experiment with electronics and web design, a creative combination of hardware and software. This is also part of the Design Skills for Design Innovation Certificate.",
+  "I enjoy integrating hardware and software in creative ways.",
+  "Design innovation allows me to prototype hands-on and test ideas visually."
+];
+let panelIndex = 0;
+
+function cyclePanel() {
+  panelIndex = (panelIndex + 1) % panelStates.length;
+  document.getElementById("panelText").innerText = panelStates[panelIndex];
+}
+
+// Section navigation
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+  document.querySelectorAll('.nav-headings button').forEach(btn => btn.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Modal functions
+function openModal() {
+  document.getElementById('contactModal').classList.add('active');
+}
+
+function closeModal() {
+  document.getElementById('contactModal').classList.remove('active');
+}
+
+// Close modal on outside click
+window.onclick = function(event) {
+  const modal = document.getElementById('contactModal');
+  if (event.target === modal) {
+    closeModal();
+  }
+}
+
+// Close modal on ESC key
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closeModal();
+  }
+});
+</script>
+</body>
+</html>
